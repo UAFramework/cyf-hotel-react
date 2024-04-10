@@ -1,45 +1,16 @@
+import moment from 'moment';
+moment().format();
 
-/**
- const results = [
-    {
-      id, title, firstName, surname, email, roomId, checkInDate, checkOutDate
-    },
-    {...},
-    {...}
-  ]
- */
-
-/**
-    imports FakeBookings from "./data/fakeBookings"
-
-    const Bookings = () => {
-
-      <SearchResults results = {FakeBookings} blah={"Blah-Blah-Blah"}/>
-    }
+const CountNumberOfNights = (checkInDate, checkOutDate) => {
+    let a = moment(checkInDate);
+    let b = moment(checkOutDate);
+    return b.diff(a, "days");
+  };
 
 
-    const SearchResults = (props) => {
-        return (
-          <>
-            <p>{props.blah}</p>
-            props.results.map(...);
-          </>
-        );
-    }
-
-
-    const SearchResults = ({blah, results}) => {
-        return (
-          <>
-            <p>{blah}</p>
-            results.map(...);
-          </>
-        );
-    }
-   */
 
 const SearchResults = ({ results }) => {
-  return (
+    return (
     <>
       <table class='table'>
         <thead>
@@ -56,52 +27,23 @@ const SearchResults = ({ results }) => {
           </tr>
         </thead>
         <tbody>
-          {
-            // result = {
-            //   id, title, firstName, surname, email, roomId, checkInDate, checkOutDate
-            // },
-
-            /**
-        const props = {
-            results: [
-              {
-                id: ..., title: ..., firstName, surname, email, roomId, checkInDate, checkOutDate
-              },
-              {...},
-            ]
-        }
-
-        const SearchResults = ({results}) => { return ... }
-
-        const callbak = (...) => { return ...};
-        array.map(callback);
-       */
-
-            results.map(({id, title, firstName, surname, email, roomId, checkInDate, checkOutDate }) => (
-              <tr key={id}>
-                <td>{id}</td>
-                <td>{title}</td>
-                <td>{firstName}</td>
-                <td>{surname}</td>
-                <td>{email}</td>
-                <td>{roomId}</td>
-                <td>{checkInDate}</td>
-                <td>{checkOutDate}</td>
-                <td>a.diff(b, 'days')</td>
-              </tr>
-            ))
-          }
+          {results.map(({ id, title, firstName, surname, email, roomId, checkInDate, checkOutDate }) => (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{title}</td>
+              <td>{firstName}</td>
+              <td>{surname}</td>
+              <td>{email}</td>
+              <td>{roomId}</td>
+              <td>{checkInDate}</td>
+              <td>{checkOutDate}</td>
+              <td>{CountNumberOfNights(checkInDate, checkOutDate)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>
   )
 }
-
-
-// To get the difference in another unit of measurement, pass that measurement as the second argument.
-
-// var a = moment([2007, 0, 29]);
-// var b = moment([2007, 0, 28]);
-// a.diff(b, 'days') // 1
 
 export default SearchResults
