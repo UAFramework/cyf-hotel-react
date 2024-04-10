@@ -1,11 +1,18 @@
-import Bookings from './Bookings'
+import Bookings from './components/Bookings'
+import Header from './components/Header'
+import TouristInfoCards from './components/TouristInfoCards'
+import Footer from './components/Footer'
 import './App.css'
 
 const App = () => {
+  const contacts = ["123 Fake Street, London, E1 4UD", "hello@fakehotel.com", "0123 456789"]
+
   return (
     <div className='App'>
-      <header className='App-header'>CYF Hotel</header>
+      <Header />
+      <TouristInfoCards />
       <Bookings />
+      <Footer contacts={contacts}/>
     </div>
   )
 }
