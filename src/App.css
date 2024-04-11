@@ -4,6 +4,7 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
+  width: 160px;
   height: 80px;
 }
 
@@ -56,4 +57,10 @@ tr {
 
 .card {
   width: 18rem;
+}
+
+.selected-row {
+  background-color: violet;
+  color: black;
+  
 }

@@ -1,6 +1,6 @@
 const Footer = ({ contacts }) => {
   return (
-    <ul>
+    <ul style={{ listStyleType: "none" }}>
       {contacts.map((contactLine) => (
         <li key={contactLine}>{contactLine}</li>
       ))}

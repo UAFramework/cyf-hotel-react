@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import moment from 'moment';
 moment().format();
 
@@ -7,9 +8,18 @@ const CountNumberOfNights = (checkInDate, checkOutDate) => {
     return b.diff(a, "days");
   };
 
-
-
 const SearchResults = ({ results }) => {
+  const [selectedRows, setSelectedRows] = useState([]);
+   const selectedClicks = (bookingId) => {
+    setSelectedRows((selectedClickedRows) => {
+      if (selectedClickedRows.includes(bookingId)) {
+      return selectedClickedRows.filter((id) => id !== bookingId)
+  } else {
+      return [...selectedClickedRows, bookingId];
+  }
+});
+}
+
     return (
     <>
       <table class='table'>
@@ -28,7 +38,8 @@ const SearchResults = ({ results }) => {
         </thead>
         <tbody>
           {results.map(({ id, title, firstName, surname, email, roomId, checkInDate, checkOutDate }) => (
-            <tr key={id}>
+            <tr key={id}  className={selectedRows.includes(id) ? "selected-row" : ""}
+            onClick={() => selectedClicks(id)}>
               <td>{id}</td>
               <td>{title}</td>
               <td>{firstName}</td>
